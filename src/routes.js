@@ -1,13 +1,16 @@
 import React from "react";
 import {Route,BrowserRouter as Router,  Switch} from "react-router-dom";
+
 import Home from "./components/home/home";
+import Login from "./components/auth/login";
+import SignUp from "./components/auth/signup";
 
 const ROUTES = [
-    { path: "/", key: "ROOT", exact: true, component: () => <h1>Log in</h1> },
+    { path: "/", key: "ROOT", exact: true, component: () => <Login/> },
     {
         path: "/home",
         key: "APP",
-        component: RenderRoutes, // here's the update
+        component: RenderRoutes,
         routes: [
             {
                 path: "/home",
@@ -23,14 +26,37 @@ const ROUTES = [
             },
         ],
     },
+    {
+        path: "/auth",
+        key: "APP",
+        component: RenderRoutes,
+        routes: [
+            {
+                path: "/auth/login",
+                key: "APP_PAGE",
+                exact: true,
+                component: () => <Login/>,
+            },
+            {
+                path: "/auth/sign-up",
+                key: "APP_PAGE",
+                exact: true,
+                component: () => <SignUp/>,
+            },
+            // {
+            //     path: "/auth/sign-up/:userId", TODO dynamic routing like this
+            //     key: "APP_PAGE",
+            //     exact: true,
+            //     component: () => <SignUp/>,
+            // },
+
+        ],
+
+    },
 ];
 
 export default ROUTES;
 
-/**
- * Render a route with potential sub routes
- * https://reacttraining.com/react-router/web/example/route-config
- */
 function RouteWithSubRoutes(route) {
     return (
         <Route
@@ -48,7 +74,8 @@ export function RenderRoutes({ routes }) {
             {routes.map((route, i) => {
                 return <RouteWithSubRoutes key={route.key} {...route} />;
             })}
-            <Route component={() => <h1>Not Found!</h1>} />
+            <Route component={() =>
+                <h1>Not Found!</h1>} />
         </Switch>
         </Router>
     );

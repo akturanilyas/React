@@ -2,7 +2,6 @@ import React, {Component} from "react";
 import axios from "axios";
 
 export default class SignUp extends Component {
-
     constructor(props) {
         super(props);
         this.state = {
@@ -114,7 +113,7 @@ export default class SignUp extends Component {
                 }}>Sign Up
                 </button>
                 <p className="forgot-password text-right">
-                    Already registered <a href="/sign-in">sign in?</a>
+                    Already registered <a href="/auth/login">sign in?</a>
                 </p>
             </form>
         );
