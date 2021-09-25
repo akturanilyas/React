@@ -1,6 +1,9 @@
 import React, {Component} from "react";
 import axios from "axios";
+import Cookies from 'universal-cookie';
+import jwt_decode from "jwt-decode";
 
+const cookies = new Cookies();
 export default class Login extends Component {
     constructor(props) {
         super(props);
@@ -37,15 +40,20 @@ export default class Login extends Component {
 
     async handleLoginClick(e) {
         e.preventDefault();
-        //this.setState({visibility: true});
+
+
         const response = await axios.post("http://127.0.0.1:3500/api/auth/login",
             this.state.user);
-        console.log(response.data);
-        console.log("heyheyhey");
+        console.log(response.data['token']);
+        let decoded = jwt_decode(response.data['token']);
+
+        cookies.set('id', decoded['id'], { path: '/' });
+        console.log(cookies.get('id')); // Pacmans
+
+
     }
 
     render() {
-
         return (
             <form>
                 <h3>Sign In</h3>
