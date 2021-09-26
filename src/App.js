@@ -4,11 +4,10 @@ import "../node_modules/bootstrap/dist/css/bootstrap.min.css";
 
 import {Route, BrowserRouter as Router, Switch} from "react-router-dom";
 import Login from "./components/Auth/login";
-import Home from "./components/Root/Root";
+import Home from "./components/Home/home";
 import SignUp from "./components/Auth/signup";
 import Navbar from "./components/Navbar/navbar";
-import Root from "./components/Root/Root";
-import UserConsumer, {UserProvider, UserContext} from "./api/user_provider";
+import { UserContext} from "./api/user_provider";
 
 
 function App() {
@@ -38,11 +37,11 @@ function App() {
 
     const unSigned =
         (<Router>
-
             <Route exact path="/auth/login"><Login/> </Route>
             <Route exact path="/auth/sign-up"><SignUp/> </Route>
             <Route exact path="/"><Login/> </Route>
         </Router>)
+
     if (id == "" || id == null) {
         return unSigned;
     }

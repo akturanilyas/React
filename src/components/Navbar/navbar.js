@@ -7,27 +7,55 @@ import {faSearch} from "@fortawesome/free-solid-svg-icons";
 import {faBell} from "@fortawesome/free-solid-svg-icons";
 import {faUsers} from "@fortawesome/free-solid-svg-icons";
 import {faEllipsisH} from "@fortawesome/free-solid-svg-icons";
+import {withRouter} from "react-router-dom";
+
+const navbarItems = [faHome, faSearch, faBell, faUsers];
+
 
 class Navbar extends Component {
+    constructor(props) {
+        super(props);
+        this.state = {
+            selected: 0
+        }
+        this.navbarButtonOnClick = this.navbarButtonOnClick.bind(this);
+    }
+
+
+    navbarButtonOnClick = (index) => {
+
+        this.setState({selected: index})
+        switch (index) {
+            case 0:
+                return this.props.history.push("/home");
+            case 1:
+                return this.props.history.push("/search");
+            case 2:
+                return this.props.history.push("/announcement");
+            case 3:
+                return this.props.history.push("/groups");
+            default:
+                return this.props.history.push("/home");
+        }
+    }
+
     render() {
         return (
             <div>
-                <ul className="btn-sm nav justify-content-center ktu-nav-bar">
-                    <button className="navbar-brand btn" type="button">
-                        <FontAwesomeIcon icon={faHome} className="ktu-item"/>
-                    </button>
-                    <button className="navbar-brand btn" type="button">
-                        <FontAwesomeIcon icon={faSearch} className="ktu-item-selected border-dark"/>
-                    </button>
-                    <button className="navbar-brand btn" type="button">
-                        <FontAwesomeIcon icon={faBell} className="ktu-item"/>
-                    </button>
-                    <button className="navbar-brand btn" type="button">
-                        <FontAwesomeIcon icon={faUsers} className="ktu-item"/>
-                    </button>
+                <ul className="btn-sm navbar justify-content-center ktu-nav-bar">
+                    {
+                        navbarItems.map((item, index) => {
+                            return (<button className="navbar-brand btn"
+                                            type="button" onClick={()=>this.navbarButtonOnClick(index)}>
+                                <FontAwesomeIcon icon={item}
+                                                 className={this.state.selected == index ? "ktu-item-selected border-dark" : "ktu-item"}/>
+                            </button>)
+                        })
+                    }
                     <li className="nav-item dropdown ">
                         <a className="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button"
-                           aria-haspopup="true" aria-expanded="false"><FontAwesomeIcon icon={faEllipsisH} className="ktu-item"/></a>
+                           aria-haspopup="true" aria-expanded="false"><FontAwesomeIcon icon={faEllipsisH}
+                                                                                       className="ktu-item"/></a>
                         <div className="dropdown-menu">
                             <a className="dropdown-item" href="#">Action</a>
                             <a className="dropdown-item" href="#">Another action</a>
@@ -43,4 +71,4 @@ class Navbar extends Component {
     }
 }
 
-export default Navbar;
+export default withRouter(Navbar);
