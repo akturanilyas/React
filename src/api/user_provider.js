@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 
-const UserContext = React.createContext();
+export const UserContext = React.createContext();
 
 function reducer(prevState, action) {
     switch (action.type) {

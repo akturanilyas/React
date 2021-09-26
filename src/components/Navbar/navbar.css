@@ -1,0 +1,16 @@
+.ktu-nav-bar{
+    background-color:blue;
+    padding: 0;
+    border-radius: 0;
+}
+
+.container-fluid{
+    padding: 0;
+}
+.ktu-item{
+    color:white;
+}
+
+.ktu-selected-item{
+    color:black;
+}

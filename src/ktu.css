@@ -1,0 +1,16 @@
+body{
+
+}
+
+.container-fluid{
+    padding: 0;
+}
+
+.ktu-item{
+    color:white;
+}
+
+.ktu-selected-item{
+    color:black;
+}
+

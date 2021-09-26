@@ -1,36 +1,52 @@
-import React from "react";
-
+import React, {useContext} from "react";
 import "./App.css";
 import "../node_modules/bootstrap/dist/css/bootstrap.min.css";
 
 import {Route, BrowserRouter as Router, Switch} from "react-router-dom";
-import Login from "./components/auth/login";
-import Home from "./components/home/home";
-import SignUp from "./components/auth/signup";
+import Login from "./components/Auth/login";
+import Home from "./components/Root/Root";
+import SignUp from "./components/Auth/signup";
+import Navbar from "./components/Navbar/navbar";
+import Root from "./components/Root/Root";
+import UserConsumer, {UserProvider, UserContext} from "./api/user_provider";
 
 
 function App() {
-    return (
-        <Router>
-            <div>
+    const {id} = useContext(UserContext);
+    const signedIn = (<Router>
+        <div>
+            <div className={"container-fluid"}>
+                <Navbar/>
                 <Switch>
-                    <Route path="/" exact>
-                        <Login/>
+                    <Route exact path="/home"><Home/> </Route>
+                    <Route exact path="/search"><Home/> </Route>
+                    <Route exact path="/announcement"><Home/> </Route>
+                    <Route exact path="/groups"><Home/> </Route>
+                    <Route path="/home/1" exact>
+                        1
                     </Route>
-                    <Route path="/auth/login" exact>
-                        <Login/>
+                    <Route path="/home/2" exact>
+                        2
                     </Route>
-                    <Route path="/auth/sign-up" exact>
-                        <SignUp/>
-                    </Route>
-                    <Route path="/home" exact >
-                        <Home/>
+                    <Route exact={true}>
+                        not found
                     </Route>
                 </Switch>
             </div>
+        </div>
+    </Router>);
 
-        </Router>
-    );
+    const unSigned =
+        (<Router>
+
+            <Route exact path="/auth/login"><Login/> </Route>
+            <Route exact path="/auth/sign-up"><SignUp/> </Route>
+            <Route exact path="/"><Login/> </Route>
+        </Router>)
+    if (id == "" || id == null) {
+        return unSigned;
+    }
+    return signedIn;
 }
 
 export default App;
