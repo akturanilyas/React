@@ -42,33 +42,35 @@ class Navbar extends Component {
     render() {
         return (
             <div>
-                <ul className="btn-sm navbar justify-content-center ktu-nav-bar">
-                    {
-                        navbarItems.map((item, index) => {
-                            return (<button className="navbar-brand btn"
-                                            type="button" onClick={()=>this.navbarButtonOnClick(index)}>
-                                <FontAwesomeIcon icon={item}
-                                                 className={this.state.selected == index ? "ktu-item-selected border-dark" : "ktu-item"}/>
-                            </button>)
-                        })
-                    }
-                    <li className="nav-item dropdown ">
-                        <a className="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button"
-                           aria-haspopup="true" aria-expanded="false"><FontAwesomeIcon icon={faEllipsisH}
-                                                                                       className="ktu-item"/></a>
-                        <div className="dropdown-menu">
-                            <a className="dropdown-item" href="#">Action</a>
-                            <a className="dropdown-item" href="#">Another action</a>
-                            <a className="dropdown-item" href="#">Something else here</a>
-                            <div className="dropdown-divider"></div>
-                            <a className="dropdown-item" href="#">Separated link</a>
-                        </div>
-                    </li>
-                </ul>
+                <nav className="navbar sticky-top navbar-expand-lg navbar-nav-scroll justify-content-center ktu-nav-bar">
 
+                        {
+                            navbarItems.map((item, index) => {
+                                return (<button className="navbar-brand btn"
+                                                type="button" onClick={() => this.navbarButtonOnClick(index)}>
+                                    <FontAwesomeIcon icon={item}
+                                                     className={this.state.selected === index ? "ktu-item-selected border-dark" : "ktu-item"}/>
+                                </button>)
+                            })
+                        }
+                        <div className="nav-item dropdown ">
+                            <a className="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button"
+                               aria-haspopup="true" aria-expanded="false"><FontAwesomeIcon icon={faEllipsisH}
+                                                                                           className="ktu-item"/></a>
+                            <div className="dropdown-menu">
+                                <a className="dropdown-item" href="#">Action</a>
+                                <a className="dropdown-item" href="#">Another action</a>
+                                <a className="dropdown-item" href="#">Something else here</a>
+                                <div className="dropdown-divider"></div>
+                                <a className="dropdown-item" href="#">Separated link</a>
+                            </div>
+                        </div>
+
+                </nav>
             </div>
         );
     }
 }
+
 
 export default withRouter(Navbar);

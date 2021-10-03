@@ -11,7 +11,7 @@ import { UserContext} from "./api/user_provider";
 
 
 function App() {
-    const {id} = useContext(UserContext);
+    const {jwt} = useContext(UserContext);
     const signedIn = (<Router>
         <div>
             <div className={"container-fluid"}>
@@ -42,7 +42,7 @@ function App() {
             <Route exact path="/"><Login/> </Route>
         </Router>)
 
-    if (id == "" || id == null) {
+    if (jwt === "" || jwt == null) {
         return unSigned;
     }
     return signedIn;

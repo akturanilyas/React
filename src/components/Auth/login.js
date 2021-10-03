@@ -1,6 +1,5 @@
 import React, {Component} from "react";
 import axios from "axios";
-import jwt_decode from "jwt-decode";
 import {withRouter} from "react-router-dom";
 import UserConsumer from "../../api/user_provider";
 
@@ -42,18 +41,15 @@ class Login extends Component {
         e.preventDefault();
         const response = await axios.post("http://127.0.0.1:3500/api/auth/login",
             this.state.user);
-        console.log(response.data['token']);
-        let decoded = jwt_decode(response.data['token']);
-        localStorage.setItem("userId", decoded['id']);
-
-        console.log(localStorage.getItem("userId"));
-        dispatch({type:"SET_ID",payload:decoded['id']})
+        // let decoded = jwt_decode(response.data['token']);
+        localStorage.setItem("jwt", response.data['token']);
+        dispatch({type:"SET_JWT",payload:response.data['token']})
         this.isSignedIn();
 
     }
 
     isSignedIn() {
-        if (localStorage.getItem("userId") !== null) {
+        if (localStorage.getItem("jwt") !== null) {
             this.props.history.push("/home");
             // We can push state like under this line command
             // this.props.history.push("/dashboard", { state: 'sample data'});

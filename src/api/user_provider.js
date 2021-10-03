@@ -4,25 +4,23 @@ export const UserContext = React.createContext();
 
 function reducer(prevState, action) {
     switch (action.type) {
-        case "REMOVE_ID":
-            return {id: ""};
-        case "SET_ID":
-            return {id: action.payload};
+        case "REMOVE_JWT":
+            return {jwt: ""};
+        case "SET_JWT":
+            return {jwt: action.payload};
     }
 }
 
 export class UserProvider extends Component {
     state = {
-        id: "", dispatch: action => {
+         jwt:"", dispatch: action => {
             this.setState(state => reducer(reducer, action))
         }
     };
 
-
-
     componentDidMount() {
-        this.setState({id: localStorage.getItem("userId")});
-        console.log(this.state.id);
+        this.setState({jwt:localStorage.getItem("jwt")});
+
     }
 
     render() {
