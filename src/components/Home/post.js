@@ -8,7 +8,7 @@ function Post(props) {
     let image =
         "https://images.pexels.com/photos/20787/pexels-photo.jpg?auto=compress&cs=tinysrgb&h=350";
     let post = (
-        <div className="card border">
+        <div className="card border p-5">
             <div className="container">
                 <div className="row row-cols-auto align-items-center border-bottom ">
                     <div className="col">

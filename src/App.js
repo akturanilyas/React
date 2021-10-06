@@ -8,6 +8,9 @@ import Home from "./components/Home/home";
 import SignUp from "./components/Auth/signup";
 import Navbar from "./components/Navbar/navbar";
 import { UserContext} from "./api/user_provider";
+import Search from "./components/Search/search";
+import Announcement from "./components/Announcement/announcement";
+import Groups from "./components/Groups/groups";
 
 
 function App() {
@@ -18,9 +21,9 @@ function App() {
                 <Navbar/>
                 <Switch>
                     <Route exact path="/home"><Home/> </Route>
-                    <Route exact path="/search"><Home/> </Route>
-                    <Route exact path="/announcement"><Home/> </Route>
-                    <Route exact path="/groups"><Home/> </Route>
+                    <Route exact path="/search"><Search/> </Route>
+                    <Route exact path="/announcement"><Announcement/> </Route>
+                    <Route exact path="/groups"><Groups/> </Route>
                     <Route path="/home/1" exact>
                         1
                     </Route>
@@ -37,9 +40,11 @@ function App() {
 
     const unSigned =
         (<Router>
+            <Switch>
             <Route exact path="/auth/login"><Login/> </Route>
             <Route exact path="/auth/sign-up"><SignUp/> </Route>
-            <Route exact path="/"><Login/> </Route>
+            <Route exact path="*"><Login/> </Route>
+            </Switch>
         </Router>)
 
     if (jwt === "" || jwt == null) {

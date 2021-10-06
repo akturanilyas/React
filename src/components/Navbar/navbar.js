@@ -41,19 +41,21 @@ class Navbar extends Component {
 
     render() {
         return (
-            <div>
-                <nav className="navbar sticky-top navbar-expand-lg navbar-nav-scroll justify-content-center ktu-nav-bar">
-
+            <nav className="
+            sticky-top navbar-expand-xxl
+            navbar-expand-sm ktu-nav-bar ">
+                <div className="collapse navbar-collapse justify-content-center" id="navbarCollapse">
+                    <ul className="nav justify-content-center ">
                         {
                             navbarItems.map((item, index) => {
-                                return (<button className="navbar-brand btn"
+                                return (<button className="navbar-brand btn m-2"
                                                 type="button" onClick={() => this.navbarButtonOnClick(index)}>
                                     <FontAwesomeIcon icon={item}
                                                      className={this.state.selected === index ? "ktu-item-selected border-dark" : "ktu-item"}/>
                                 </button>)
                             })
                         }
-                        <div className="nav-item dropdown ">
+                        <div className="navbar-brand btn m-2 dropdown ">
                             <a className="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button"
                                aria-haspopup="true" aria-expanded="false"><FontAwesomeIcon icon={faEllipsisH}
                                                                                            className="ktu-item"/></a>
@@ -65,9 +67,9 @@ class Navbar extends Component {
                                 <a className="dropdown-item" href="#">Separated link</a>
                             </div>
                         </div>
-
-                </nav>
-            </div>
+                    </ul>
+                </div>
+            </nav>
         );
     }
 }
