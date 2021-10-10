@@ -2,22 +2,15 @@ import React, {Component} from "react";
 import AddPost from "./add_post";
 import Post from "./post";
 import {getHomePagePosts} from "../../api/services/post_service";
-import UserConsumer, {UserContext} from "../../api/user_provider";
+import {UserContext} from "../../api/user_provider";
 import {Spinner} from "react-bootstrap";
 
 class Home extends Component {
     static contextType = UserContext;
 
-
     constructor(props) {
         super(props);
         this.state = {isLoaded: false, posts: []}
-    }
-
-
-    componentDidUpdate(prevProps: Readonly<P>, prevState: Readonly<S>, snapshot: SS) {
-        console.log("updateim aloo");
-        console.log(this.state.posts)
     }
 
     render() {
