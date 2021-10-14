@@ -40,7 +40,7 @@ class Home extends Component {
             </div>
         </>
         let spinner =
-            <Spinner animation="border"/>
+            <div className="text-center pt-3"><Spinner animation="border"/></div>
 
         return (
             <div className="container-sm border">

@@ -25,6 +25,5 @@ export async function getUserGroup(jwt) {
             }
         }
     );
-    console.log(response)
     return response.data;
 }
