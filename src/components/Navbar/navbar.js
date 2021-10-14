@@ -42,6 +42,7 @@ class Navbar extends Component {
     render() {
         return (
             <nav className="
+            bg-primary
             sticky-top navbar-expand-xxl
             navbar-expand-sm ktu-nav-bar ">
                 <div className="collapse navbar-collapse justify-content-center" id="navbarCollapse">

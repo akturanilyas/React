@@ -21,7 +21,7 @@ function Post(props) {
                         <FontAwesomeIcon className="col" icon={faAngleRight}/>
                     </div>
                     <div className="col">
-                        <h1>grupname</h1>
+                        <h1>{props.post.group.name}</h1>
                     </div>
                 </div>
                 <div className="row">

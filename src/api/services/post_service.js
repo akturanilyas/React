@@ -2,10 +2,11 @@ import axios from "axios";
 import jwt_decode from "jwt-decode";
 
 
-export async function sendPost(jwt, content) {
-    const id = jwt_decode(jwt)["id"];
+export async function sendPost(jwt,groupId , content) {
+    console.log(groupId)
+
     await axios.post(
-        "http://127.0.0.1:3500/api/users/" + id + "/posts",
+        "http://127.0.0.1:3500/api/groups/" + groupId + "/posts",
         {
             content: content
         }, {
